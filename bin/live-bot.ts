@@ -4,7 +4,8 @@ import * as cdk from 'aws-cdk-lib';
 import { LiveBotStack } from '../lib/live-bot-stack';
 
 const app = new cdk.App();
-new LiveBotStack(app, 'LiveBotStack', {
+new LiveBotStack(app, 'sandbox', {
+  stackName: "live-bot-stack"
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
