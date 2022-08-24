@@ -13,12 +13,14 @@ export class LiveBotStack extends Stack {
 
     const fn = new NodejsFunction(this, 'liveBotFn', {
       entry: path.join(__dirname, '../src/index.ts'),
-      environment: {
-        SLACK_SIGNING_SECRET:secret.secretValueFromJson("SLACK_SIGNING_SECRET").unsafeUnwrap(),
-        SLACK_BOT_TOKEN:secret.secretValueFromJson("SLACK_BOT_TOKEN").unsafeUnwrap()
+      bundling: {
+        externalModules: [
+          'aws-sdk' //Use aws-sdk available in the Lambda runtime
+        ]
       }
     })
 
+    secret.grantRead(fn)
     // test to see output
     console.log("UNSAFE bobos", secret.secretValueFromJson("SLACK_SIGNING_SECRET").unsafeUnwrap())
     console.log("SAFE bobos", secret.secretValueFromJson("SLACK_SIGNING_SECRET")) //TODO, put in a var and apply unsafeUnwrap to it. see if you can 

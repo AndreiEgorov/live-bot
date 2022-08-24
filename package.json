@@ -20,6 +20,8 @@
     "typescript": "~3.9.7"
   },
   "dependencies": {
+    "@middy/core": "^3.2.2",
+    "@middy/secrets-manager": "^3.2.2",
     "@slack/bolt": "^3.12.1",
     "aws-cdk-lib": "2.21.0",
     "constructs": "^10.0.0",
