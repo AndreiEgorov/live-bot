@@ -9,6 +9,7 @@ let awsLambdaReceiver: AwsLambdaReceiver;
 
 const lambdaHandler = async (event: any, context: any, callback: any) => {
   if (!app) {
+    // inits app with your bot token and AWS Lambda ready receiver
     awsLambdaReceiver = new AwsLambdaReceiver({
       signingSecret: context.botSecret.SLACK_SIGNING_SECRET!,
     });
@@ -20,12 +21,10 @@ const lambdaHandler = async (event: any, context: any, callback: any) => {
     });
 
     app.message(":wave:", async ({ message, say }) => {
-      console.log("BOBOS message", JSON.stringify(message));
       await say(`Hello <@${message.user}>, I am Batmaaaan!`);
     });
   }
 
-  console.log("MY Eventus", event);
   const handler = await awsLambdaReceiver.start();
   return handler(event, context, callback);
 };

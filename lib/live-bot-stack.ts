@@ -4,7 +4,6 @@ import { Secret } from 'aws-cdk-lib/aws-secretsmanager';
 import { NodejsFunction } from 'aws-cdk-lib/aws-lambda-nodejs';
 import { LambdaRestApi } from 'aws-cdk-lib/aws-apigateway';
 import * as path from 'path'
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
 
 export class LiveBotStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -21,21 +20,12 @@ export class LiveBotStack extends Stack {
     })
 
     secret.grantRead(fn)
-    // test to see output
-    console.log("UNSAFE bobos", secret.secretValueFromJson("SLACK_SIGNING_SECRET").unsafeUnwrap())
-    console.log("SAFE bobos", secret.secretValueFromJson("SLACK_SIGNING_SECRET")) //TODO, put in a var and apply unsafeUnwrap to it. see if you can 
-    //
+
     // The code that defines your stack goes here
 
     const api = new LambdaRestApi(this, "liveBotApi", {
       restApiName: "LiveBotApi",
       handler: fn
     })
-
-
-    // example resource
-    // const queue = new sqs.Queue(this, 'LiveBotQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
   }
 }
