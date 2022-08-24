@@ -60,10 +60,10 @@ export class MonitoringStack extends Stack {
       left: [new Metric({
         namespace: "AWS/ApiGateway",
         metricName: "Count",
+        statistic: "Sum",
         dimensionsMap: {
-          ApiName: "LiveBotAPI"
+          ApiName: "LiveBotApi"
         },
-        ...sharedSettings
       })]
     }))
   }
