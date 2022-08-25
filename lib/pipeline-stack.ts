@@ -43,7 +43,7 @@ export class MyPipelineStack extends Stack {
           "npm ci",
           "npm test",
           "npm run build",
-          "npm cdk synth",
+          "npm run cdk synth",
         ],
       }),
     });
