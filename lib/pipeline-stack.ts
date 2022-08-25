@@ -29,7 +29,7 @@ export class MyPipelineStack extends Stack {
         },
       },
       synth: new ShellStep("Synth", {
-        primaryOutputDirectory: "../cdk.out",
+        primaryOutputDirectory: "cdk.out",
         input: pipelines.CodePipelineSource.connection(
           "AndreiEgorov/live-bot",
           "main",
