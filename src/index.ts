@@ -21,6 +21,7 @@ const lambdaHandler = async (event: any, context: any, callback: any) => {
     });
 
     app.message(":wave:", async ({ message, say }) => {
+      // @ts-ignore
       await say(`Hello <@${message.user}>, I am Batmaaaan!`);
     });
   }

@@ -3,6 +3,7 @@ import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
 import { LiveBotStack } from "../lib/live-bot-stack";
 import { MonitoringStack } from "../lib/monitoring-stack";
+import { MyPipelineStack } from "../lib/pipeline-stack";
 
 const app = new cdk.App();
 new LiveBotStack(app, "sandbox", {
@@ -22,7 +23,13 @@ new LiveBotStack(app, "sandbox", {
   /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
 });
 
+// deploy: aws-vault exec dil-team-adamantium -- cdk deploy monitoring
 new MonitoringStack(app, "monitoring", {
   stackName: "live-bot-monitoring-stack",
   env: { account: '254142059882', region: 'us-west-2' },
 });
+
+new MyPipelineStack(app, "pipeline-stack", {
+  stackName:'live-bot-pipeline-stack', // when not provided, its id ("pipeline-stack") will be used by default
+  env: { account: '254142059882', region: 'us-west-2' },
+})

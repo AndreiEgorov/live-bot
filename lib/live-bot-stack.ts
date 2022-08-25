@@ -13,9 +13,9 @@ export class LiveBotStack extends Stack {
     const fn = new NodejsFunction(this, 'liveBotFn', {
       entry: path.join(__dirname, '../src/index.ts'),
       bundling: {
-        externalModules: [
-          'aws-sdk' //Use aws-sdk available in the Lambda runtime
-        ]
+        // externalModules: [
+        //   'aws-sdk' //Use aws-sdk available in the Lambda runtime
+        // ]
       }
     })
 
